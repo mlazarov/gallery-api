@@ -16,7 +16,10 @@ exports.autoLogin = function(user, pass, callback){
 }
 
 exports.Login = function(user, pass, callback){
-	users.findOne({username:user,password:pass}, function(err, doc) {
+	users.findOne({
+			username: user,
+			password: pass
+		}, function(err, doc) {
 		if (doc){
 			callback(false,doc);
 		} else{
