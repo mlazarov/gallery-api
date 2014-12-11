@@ -1,7 +1,6 @@
 // Albums
 
 var db = require('monk')('localhost/snapp');
-var _ = require('underscore');
 
 var gallery = db.get('gallery');
 
