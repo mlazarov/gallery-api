@@ -1,7 +1,9 @@
 ## Installation
+```bash
 git clone https://github.com/mlazarov/gallery-api.git
 cd gallery-api
 npm install
+```
 
 ## run
 node index.js
