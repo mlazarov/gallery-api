@@ -2,6 +2,7 @@
 
 var user = require('./users.js');
 var express = require('express');
+var gallery = require('./gallery.js');
 
 module.exports = function(app) {
 	app.use(express.static(__dirname + '/../public'));
@@ -41,13 +42,23 @@ module.exports = function(app) {
 	});
 
 
-	app.post('/album/', function(req, res){
-		
+	app.get('/gallery/list', function(req, res){
+		if (req.session.user == null){
+			res.status(409).json({error:'Please login'});
+		}
+		gallery.List(req.session.user._id,function(err,data){
+			res.json(data);
+		});
 
 	});
 
 	app.post('/upload/', function(req, res){
-		
+		if (req.session.user == null){
+			res.status(409).json({error:'Please login'});
+		}
+		gallery.newFile(req.session.user._id,req.files,function(err,data){
+			res.json(data);	
+		});
 	});
 
 }

@@ -29,21 +29,13 @@
 	</form>
 	<hr/>
 	<form role="form">
-		<b>List Albums</b><br/>
-		<input type="button" id="albums-list" class="btn btn-success" value="List">
+		<b>List Images</b><br/>
+		<input type="button" id="list-images" class="btn btn-success" value="List">
 	</form>
 	<hr/>
 
-	<form role="form">
-		<b>Get Album images</b><br/>
-		<input type="text" id="album-id" value="" class="form-control">
-		<input type="button" id="album-list" value="Get" class="btn btn-success">
-	</form>
-	<hr/>
-
-	<form method="post" enctype="multipart/form-data" role="form">
-		<b>Upload to album</b><br/>
-		<input type="text" name="album-id" value="" class="form-control">
+	<form method="post" enctype="multipart/form-data" role="form" action="/upload">
+		<b>Upload Image</b><br/>
 		<input type="file" name="image" class="form-control"><br/>
 		<input type="submit" class="btn btn-success" value="Upload">
 	</form>
@@ -62,7 +54,6 @@
 	});
 	
 
-
 	$('#create-account').click(function(){
 		$.post('/signup',{user:$('#user').val(),pass:$('#pass').val()},function(data){
 			console.log(data);
@@ -75,20 +66,12 @@
 		});
 	});
 
-	$('#albums-list').click(function(){
-		$.get('/albums',function(data){
+	$('#list-images').click(function(){
+		$.get('/gallery/list',function(data){
 			console.log(data);
 		});
 	});
 	
-	$('#album-list').click(function(){
-		$.get('/album/'+$('#album-id').val(),function(data){
-			console.log(data);
-		});
-	});
-
-
-
 	</script>
 
 

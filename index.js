@@ -6,7 +6,8 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    multer  = require('multer');
 
 
 var app = express();
@@ -17,6 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({secret: 'snapsecret', saveUninitialized: true, resave: true}));
 app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(multer({
+        dest: './public/uploads'
+    }));
 
 // Routes
 require('./modules/router.js')(app);
