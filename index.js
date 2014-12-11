@@ -18,6 +18,9 @@ app.use(bodyParser.json());
 app.use(session({secret: 'snapsecret', saveUninitialized: true, resave: true}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
+// Routes
+require('./modules/router.js')(app);
+
 
 var port = 8001
 app.listen(port);
