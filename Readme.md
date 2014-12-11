@@ -1,3 +1,7 @@
+## About
+
+### Simple nodejs mongodb gallery API with user authentication
+
 ## Installation
 ```bash
 git clone https://github.com/mlazarov/gallery-api.git
