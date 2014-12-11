@@ -10,6 +10,10 @@ module.exports = function(app) {
 		res.send('<h3>Please download our mobile application to use this service.</h3>');
 	});
 
+	app.get('/session', function(req, res){
+		res.json(req.session);
+	});
+
 	app.post('/signup', function(req, res){
 		user.Register({
 			user: req.param('user'),
