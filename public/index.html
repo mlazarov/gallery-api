@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Snapp Test</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="row"><div class="col-md-4 col-md-offset-4">
+
+	<form role="form">
+		<b>Aaccount</b><br/>
+		User: <input type="text" id="user" class="form-control"><br/>
+		Pass: <input type="password" id="pass" class="form-control"><br/>
+		<input type="button" id="create-account" value="Create" class="btn btn-success">
+		<input type="button" id="login" value="Login" class="btn btn-success">
+	</form>
+	<hr/>
+	<form role="form">
+		<b>List Albums</b><br/>
+		<input type="button" id="albums-list" class="btn btn-success" value="List">
+	</form>
+	<hr/>
+
+	<form role="form">
+		<b>Get Album images</b><br/>
+		<input type="text" id="album-id" value="" class="form-control">
+		<input type="button" id="album-list" value="Get" class="btn btn-success">
+	</form>
+	<hr/>
+
+	<form method="post" enctype="multipart/form-data" role="form">
+		<b>Upload to album</b><br/>
+		<input type="text" name="album-id" value="" class="form-control">
+		<input type="file" name="image" class="form-control"><br/>
+		<input type="submit" class="btn btn-success" value="Upload">
+	</form>
+
+	</div></div>
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<script>
+	$('#create-account').click(function(){
+		$.post('/signup',{user:$('#user').val(),pass:$('#pass').val()},function(data){
+			console.log(data);
+		});
+	});
+
+	$('#login').click(function(){
+		$.post('/login',{user:$('#user').val(),pass:$('#pass').val()},function(data){
+			console.log(data);
+		});
+	});
+
+	$('#albums-list').click(function(){
+		$.get('/albums',function(data){
+			console.log(data);
+		});
+	});
+	
+	$('#album-list').click(function(){
+		$.get('/album/'+$('#album-id').val(),function(data){
+			console.log(data);
+		});
+	});
+
+
+
+	</script>
+
+
+</body>
+</html>

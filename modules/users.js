@@ -5,7 +5,7 @@ var db = require('monk')('localhost/snapp');
 var users = db.get('user');
 
 exports.autoLogin = function(user, pass, callback){
-	user.findOne({username:user}, function(err, doc) {
+	users.findOne({username:user}, function(err, doc) {
 		if (doc){
 			doc.password == pass ? callback(doc) : callback(null);
 		} else{
@@ -16,7 +16,7 @@ exports.autoLogin = function(user, pass, callback){
 }
 
 exports.Login = function(user, pass, callback){
-	user.findOne({username:user,password:pass}, function(err, doc) {
+	users.findOne({username:user,password:pass}, function(err, doc) {
 		if (doc){
 			callback(false,doc);
 		} else{
@@ -33,8 +33,8 @@ exports.Register = function(data, callback){
 		if(doc){
 			callback('User already exists');
 		}else{
-			// Create new account 
-			accounts.insert({username:data.user,password:data.pass}, {safe: true}, callback);
+			// Create new user
+			users.insert({username:data.user,password:data.pass}, function(err,doc){callback(err,doc);});
 		}
 	});
 }
