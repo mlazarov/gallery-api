@@ -26,15 +26,15 @@ exports.Login = function(user, pass, callback){
 
 }
 
-exports.Register = function(user, pass, callback){
+exports.Register = function(data, callback){
 	// TODO: add password encription
 	// First check if that users exits
-	users.findOne({username:user}, function(err, doc) {
+	users.findOne({username:data.user}, function(err, doc) {
 		if(doc){
 			callback('User already exists');
 		}else{
 			// Create new account 
-			accounts.insert({username:user,password:pass}, {safe: true}, callback);
+			accounts.insert({username:data.user,password:data.pass}, {safe: true}, callback);
 		}
 	});
 }

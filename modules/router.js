@@ -8,10 +8,32 @@ module.exports = function(app) {
 	});
 
 	app.get('/signup', function(req, res){
-
+		user.Register({
+			user: req.param('user'),
+			pass: req.param('pass')
+		},function(err,result){
+			if(err){
+				res.status(409).json({error:result});
+			}else{
+				req.session.user = result;
+				res.json({message:'Registration successfull!'});
+			}
+		});
 	});
 
 	app.post('/login', function(req, res){
+		user.Login({
+			user: req.param('user'),
+			pass: req.param('pass')
+		},function(err,result){
+			if(err){
+				res.status(402).json({error:result});
+			}else{
+				req.session.userId = result._id;
+				req.session.user = result;
+				res.json({message:'Successfully logged in'});
+			}
+		});
 
 	});
 
