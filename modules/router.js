@@ -1,4 +1,6 @@
 // Router
+var user = require('./users.js');
+
 
 module.exports = function(app) {
 	app.get('/', function(req, res){
