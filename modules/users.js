@@ -2,7 +2,7 @@
 //TODO: use config for db credentials
 var db = require('monk')('localhost/snapp');
 
-var users = db.get('user');
+var users = db.get('users');
 
 exports.autoLogin = function(user, pass, callback){
 	users.findOne({username:user}, function(err, doc) {
